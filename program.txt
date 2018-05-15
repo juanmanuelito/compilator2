@@ -1,0 +1,5 @@
+class a
+	function b()
+		puts("hello")
+	end
+end
