@@ -13,22 +13,17 @@ import java.util.ArrayList;
  */
 public class ObjectClass implements Object {
     private String name;
-    private ArrayList<ObjectFunction> functions = null;
+    private ArrayList<ObjectFunction> functions = new ArrayList();
+	private ArrayList<String> definitions = new ArrayList();
     
     public ObjectClass addfunction(ObjectFunction function) throws Exception{
-        if(functions != null){
-            if(functions.size() > 0){
-               if(functions.get(functions.size()-1).end())
-                   functions.add(function);
-                else
-                   throw new Exception("Error de sintaxis en la definicion de la funcion");
-            }else functions.add(function);
-        }else{
-            functions = new ArrayList();
-            functions.add(function);
-        }
-        return this;
+		functions.add(function);
+		return this;
     }
+
+	public ObjectClass addDefinitions(String definition){
+		
+	}
     
     @Override
     public Object setName(String name) {

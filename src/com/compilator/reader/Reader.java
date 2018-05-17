@@ -8,6 +8,8 @@ package com.compilator.reader;
 import com.compilator.analizer.Analizer;
 import java.io.File;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
@@ -26,18 +28,13 @@ public class Reader {
 
     public void readFile() {
         try {
-            File file = new File(this.fileName);
-            Scanner input = new Scanner(file);
-            int count = 0;
-            while (input.hasNext()) {
-                String word = input.next();
-                System.out.println("Word: " + word);
-                this.analizer.analizeWord(word);
-                System.out.println("Word count: " + count);
-                System.out.println("Word count: " + count);
-                count = count + 1;
-            }
+			Path path = Paths.get(this.fileName);
+    		String stringFromFile = new String(
+            java.nio.file.Files.readAllBytes(path));
+			System.out.println(stringFromFile);
+			this.analizer.analizeFile(stringFromFile);
         } catch (Exception e) {
+			e.printStackTrace();
             System.out.println(e.getMessage());
             System.out.println("Error al leer el archivo ...");
         }

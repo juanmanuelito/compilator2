@@ -7,41 +7,62 @@ package com.compilator.analizer;
 
 import com.compilator.objects.Object;
 import com.compilator.objects.ObjectClass;
-import com.compilator.objects.ObjectFunction;
-import com.sun.xml.internal.ws.util.StringUtils;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author jmendieta
  */
-public class Analizer implements AnalizerConstants{
-    Object generalScope ;
-    Object currentScope = null;
-    public void analizeWord(String word) throws Exception{
-        if(currentScope != null){
-            if(structuresName.contains(word)){
-                if(word.equals("function")){
-                    ((ObjectClass) currentScope).addfunction(new ObjectFunction());
-                }else{
-                    throw new Exception("Error al asignar un objeto a la clase");
-                }
-            }else{
-                if(currentScope.getName() == null){
-                    System.out.println("print "+word);
-                    currentScope.setName(word);
-                }
-            }
-        }else if(structuresName.contains(word)){
-            switch(StringUtils.capitalize(word)){
-                case "Class":
-                    this.currentScope = new ObjectClass();
-                break;
-                case "Function":
-                    this.currentScope = new ObjectFunction();
-                break;
-                default:
-                    throw new Error("Inconpatible object");
-            }
-        }	
-    }	
+public class Analizer implements AnalizerConstants {
+
+	Object generalScope;
+	Object currentScope = null;
+	List<String> clases = null;
+	String fileContent = null;
+
+	public void analizeWord(String word) throws Exception {
+
+	}
+	public List<String> getMatches(String text,String regx,boolean update){
+		List<String> allMatches = new ArrayList<String>();
+		Matcher m = Pattern.compile(regx)
+				.matcher(text);
+		while (m.find()) {
+			allMatches.add(m.group());
+		}	
+		if(update) fileContent = fileContent.replaceAll(regx,"");
+		return allMatches; 
+	}
+	public String getFirstMatch(String text,String regx,boolean update){
+		Matcher m = Pattern.compile(regx)
+				.matcher(text);
+		if(m.find()) return m.group(); 	
+		return new String("");
+	}
+	public void analizeFile(String stringFromFile) {
+		this.fileContent = stringFromFile;
+		clases = getMatches(fileContent,clasesRegx,true);
+		analizeClases(clases);
+		System.out.println("string final");
+		System.out.println(this.fileContent);
+	}
+	public void analizeClases(List<String> clases){
+		for(String classContent: clases){
+			ObjectClass objectClass = new ObjectClass();
+			objectClass.setName(getFirstMatch(classContent,className, false).trim());
+			List<String> functions = getMatches(classContent, functionRegx, false);
+			analizeFunctions(functions, objectClass);	
+			classContent = classContent.replaceAll(functionRegx, "");
+			
+			System.out.println(classContent);
+		}
+	}
+	public void analizeFunctions(List<String> functions,ObjectClass objectClass){
+		for(String function : functions){
+			
+		}	
+	}
 }

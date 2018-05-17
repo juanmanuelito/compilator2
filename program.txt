@@ -1,5 +1,15 @@
-class a
-	function b()
-		puts("hello")
+class uno
+	int a,b,c
+	string a = ''
+	function uno()
+		int r = 18
+		
+	end
+	function dos()
+		asdfasdf
+	end
+	asdfasdf
+	function tres()
+		asdfasdf
 	end
 end

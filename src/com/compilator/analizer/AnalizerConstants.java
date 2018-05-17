@@ -15,10 +15,9 @@ import java.util.List;
  * @author jmendieta
  */
 public interface AnalizerConstants {
-	final List<String> structuresName = Arrays.asList("Class","function","if","while");
-	final List<String> structures = Arrays.asList("if","while","else");
-	final List<String> logical = Arrays.asList("<",">","&&","||","==");
-	final List<String> sentences = Arrays.asList("=","new");
-	final List<String> def = Arrays.asList("var");
-	final String structuresEnd ="end";
+	final String clasesRegx = "(class\\s+\\w+(\\s*|\\s*\\n*)((\\s*|\\n*)(.*?)(\\s*|\\n*))*(function\\s+\\w*\\((.*)\\)(\\s*|\\n*)(.*?)(\\s*|\\n*)end)(\\s*|\\s*\\n*))*end";
+	final String className = "(?<=class)\\s+\\w+\\s(?=(\\s*|\\s*\\n*\\s*))";
+	final String functionRegx = "(function\\s+\\w*(\\(\\)|\\((.*)\\))(\\s*|\\n*)((\\s*\\n*).*?(\\s*\\n*))*(\\s*|\\n*)end)+";
+	final String classDefs = "((private|public|)\\s*)(int|string|bool|float)(.*)";
+	
 }
