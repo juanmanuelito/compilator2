@@ -14,12 +14,12 @@ import com.compilator.reader.Reader;
  */
 public class Compilator {
 
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String[] args) {
-		Reader a = new Reader("program.txt");
-		a.readFile(new Analizer());
-	}
-	
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Reader a = new Reader("program.txt", new Analizer());
+        a.readFile();
+    }
+
 }

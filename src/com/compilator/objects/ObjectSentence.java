@@ -9,7 +9,7 @@ package com.compilator.objects;
  *
  * @author jmendieta
  */
-public class ObjectFunction implements Object {
+public class ObjectSentence implements Object {
 
     @Override
     public Object setName(String name) {

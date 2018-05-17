@@ -10,5 +10,9 @@ package com.compilator.objects;
  * @author jmendieta
  */
 public interface Object {
-	
+    String name = null;
+    public Object setName(String name);
+    public String getName();
+    public void build();
+    public boolean end();   
 }

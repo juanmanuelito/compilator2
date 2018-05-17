@@ -15,25 +15,31 @@ import java.util.Scanner;
  * @author jmendieta
  */
 public class Reader {
-	String fileName = null;
-	Analizer analizer = null;
-	public Reader(String fileName,Analizer analizer) {
-		this.fileName = fileName;
-		this.analizer = analizer;
-	}	
-	public void readFile(){	
-		try{
-			File file = new File(this.fileName);
-			Scanner input = new Scanner(file); 
-			int count = 0;
-			while (input.hasNext()) {
-			  String word  = input.next();
-			  this.analizer; 
-			  count = count + 1;
-			}
-			System.out.println("Word count: " + count);
-		}catch(Exception e){
-			System.out.println("Error al leer el archivo ...");
-		}
-	}	
+
+    String fileName = null;
+    Analizer analizer = null;
+
+    public Reader(String fileName, Analizer analizer) {
+        this.fileName = fileName;
+        this.analizer = analizer;
+    }
+
+    public void readFile() {
+        try {
+            File file = new File(this.fileName);
+            Scanner input = new Scanner(file);
+            int count = 0;
+            while (input.hasNext()) {
+                String word = input.next();
+                System.out.println("Word: " + word);
+                this.analizer.analizeWord(word);
+                System.out.println("Word count: " + count);
+                System.out.println("Word count: " + count);
+                count = count + 1;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Error al leer el archivo ...");
+        }
+    }
 }
