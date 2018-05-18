@@ -22,7 +22,8 @@ public class ObjectClass implements Object {
     }
 
 	public ObjectClass addDefinitions(String definition){
-		
+		this.definitions.add(definition);
+		return this;
 	}
     
     @Override

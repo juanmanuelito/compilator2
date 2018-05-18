@@ -55,14 +55,13 @@ public class Analizer implements AnalizerConstants {
 			objectClass.setName(getFirstMatch(classContent,className, false).trim());
 			List<String> functions = getMatches(classContent, functionRegx, false);
 			analizeFunctions(functions, objectClass);	
-			classContent = classContent.replaceAll(functionRegx, "");
-			
+			classContent = classContent.replaceAll(functionRegx, "");	
 			System.out.println(classContent);
 		}
 	}
 	public void analizeFunctions(List<String> functions,ObjectClass objectClass){
 		for(String function : functions){
-			
+				
 		}	
 	}
 }
