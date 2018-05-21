@@ -27,12 +27,15 @@ public class CodeGenerator implements CodeConstants {
             while (m.find()) {
                 for (j = 0; j < type.get(i).size(); j++) {
                     int jp = type.get(i).size() > 1 ? j + 1 : j;
-                    if (type.get(i).get(j).equals("add")) {
+                    if (type.get(i).get(j).equals("addEnd")) {
                         code = code.replace(m.group(jp),
                                 m.group(jp) + remplacement.get(i).get(j));
                     } else if (type.get(i).get(j).equals("replace")) {
                         code = code.replace(m.group(jp),
                                 remplacement.get(i).get(j));
+                    }else if (type.get(i).get(j).equals("addIni")) {
+                        code = code.replace(m.group(jp),
+                                m.group(jp+1)+remplacement.get(i).get(j)+m.group(jp));
                     }
 
                 }

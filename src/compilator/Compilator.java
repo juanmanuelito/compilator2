@@ -21,5 +21,4 @@ public class Compilator {
         Reader a = new Reader("program.txt", new Analizer());
         a.readFile();
     }
-
 }

@@ -46,7 +46,7 @@ public class ObjectClass {
 
     
     public void build() throws FileNotFoundException, UnsupportedEncodingException {
-        PrintWriter writer = new PrintWriter(this.name+".java", "UTF-8");
+        PrintWriter writer = new PrintWriter("code/"+this.name+".java", "UTF-8");
         writer.println("public class "+this.name+" {");
         for(ObjectFunction function : this.functions){
             writer.append(function.getContent());

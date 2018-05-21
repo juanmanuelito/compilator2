@@ -1,6 +1,11 @@
 class uno
 	function PiramideTriangular()
-		int area = gets()
-		
+		puts("Ingrese el area de la base del triangulo ")
+		int areaBase = gets()
+		puts("ingrese la altura del triangulo")
+		int alatura = gets()
+		puts(((1/3)*areaBase*altura))
 	end
 end
+instance = new uno()
+instance.PiramideTriangular()

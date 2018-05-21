@@ -9,12 +9,15 @@ import com.compilator.generator.CodeGenerator;
 import com.compilator.objects.ObjectClass;
 import com.compilator.objects.ObjectFunction;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  *
@@ -22,8 +25,7 @@ import java.util.Scanner;
  */
 public class Analizer implements AnalizerConstants {
 
-    ObjectFunction generalScope;
-    Object currentScope = null;
+    ObjectFunction generalScope =  new ObjectFunction();
     List<String> clases = null;
     String fileContent = null;
     CodeGenerator generator = new CodeGenerator();
@@ -61,7 +63,6 @@ public class Analizer implements AnalizerConstants {
             getMatches(file, functions, true).size()+
             getMatches(file, structures, true).size() == 
             getMatches(file, "end", true).size()){
-            System.out.println("entra");
             getMatches(file, sentences, true);
             getMatches(file, callers, true);
         }
@@ -87,7 +88,7 @@ public class Analizer implements AnalizerConstants {
         List<String> sentences = getMatches(fileContent, clasesRegx, true);
     }
 
-    public void analizeClases(List<String> clases) throws FileNotFoundException, UnsupportedEncodingException {
+    public void analizeClases(List<String> clases) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         for (String classContent : clases) {
             ObjectClass objectClass = new ObjectClass();
             objectClass.setName(getFirstMatch(classContent, className, false).trim());
@@ -97,6 +98,7 @@ public class Analizer implements AnalizerConstants {
             objectClass.setDefinitions((ArrayList<String>) getMatches(classContent, classDefs, false));
             objectClases.add(objectClass);
         }
+		this.generalScope.setContent(generator.refactorCode(this.fileContent));
         this.build();
     }
 
@@ -107,8 +109,19 @@ public class Analizer implements AnalizerConstants {
             objectClass.addfunction(funtionObj);
         }
     }
-    public void build() throws FileNotFoundException, UnsupportedEncodingException{
-        for(ObjectClass object: objectClases)
+    public void build() throws FileNotFoundException, UnsupportedEncodingException, IOException{
+        for(ObjectClass object: objectClases){	
             object.build();
+		}
+		Path path = Paths.get("config/Generated.java");
+		String stringFromFile = new String(
+		java.nio.file.Files.readAllBytes(path));
+		writeInfile("code/Generated.java",String.format(stringFromFile, "",this.generalScope.getContent()));	
     }
+	public void writeInfile(String path,String text) 
+			throws FileNotFoundException, UnsupportedEncodingException{
+		PrintWriter writer = new PrintWriter(path, "UTF-8");
+        writer.print(text);
+        writer.close();
+	}
 }
