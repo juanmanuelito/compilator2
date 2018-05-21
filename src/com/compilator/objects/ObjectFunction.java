@@ -5,6 +5,8 @@
  */
 package com.compilator.objects;
 
+import java.util.Scanner;
+
 /**
  *
  * @author jmendieta
@@ -22,8 +24,12 @@ public class ObjectFunction  {
         return this.name;
     }
 
-    
+    public String getContent() {
+        return content;
+    }
+
     public void build() {
         
     }
+    
 }

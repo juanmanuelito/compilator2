@@ -5,6 +5,9 @@
  */
 package com.compilator.objects;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 /**
@@ -42,7 +45,13 @@ public class ObjectClass {
     }
 
     
-    public void build() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void build() throws FileNotFoundException, UnsupportedEncodingException {
+        PrintWriter writer = new PrintWriter(this.name+".java", "UTF-8");
+        writer.println("public class "+this.name+" {");
+        for(ObjectFunction function : this.functions){
+            writer.append(function.getContent());
+        }
+        writer.println("}");
+        writer.close();
     }
 }

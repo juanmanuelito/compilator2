@@ -8,10 +8,13 @@ package com.compilator.analizer;
 import com.compilator.generator.CodeGenerator;
 import com.compilator.objects.ObjectClass;
 import com.compilator.objects.ObjectFunction;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -19,7 +22,7 @@ import java.util.List;
  */
 public class Analizer implements AnalizerConstants {
 
-    Object generalScope;
+    ObjectFunction generalScope;
     Object currentScope = null;
     List<String> clases = null;
     String fileContent = null;
@@ -38,7 +41,6 @@ public class Analizer implements AnalizerConstants {
             }
         }
         if (update) {
-            System.out.println("actualiza");
             fileContent = fileContent.replaceAll(regx, "");
         }
         return allMatches;
@@ -53,7 +55,7 @@ public class Analizer implements AnalizerConstants {
         return new String("");
     }
     
-    public void validateSintax(String fromFile){
+    public void validateSintax(String fromFile) throws Exception{
         String file = fromFile;
         if(getMatches(file, definitios, true).size()+
             getMatches(file, functions, true).size()+
@@ -63,13 +65,13 @@ public class Analizer implements AnalizerConstants {
             getMatches(file, sentences, true);
             getMatches(file, callers, true);
         }
-            System.out.println(fileContent);
         if(!fileContent.trim().equals("")){
             int i =0;
-            System.out.println(fileContent.split(System.getProperty("line.separator")).length);
             for(String line: fileContent.split(System.getProperty("line.separator"))){
-                if(i++ > 0 && !line.trim().equals("")) System.out.println("error en la linea "+i);
-                System.out.println("linea "+i);
+                if(i++ > 0 && !line.trim().equals("")) {
+                    System.out.println("error en la linea "+i);
+                    throw new Exception("sintax error");
+                }
             }
         }
         else System.out.println("archivo bien formado");
@@ -77,17 +79,17 @@ public class Analizer implements AnalizerConstants {
             
     }
 
-    public void analizeFile(String stringFromFile) {
+    public void analizeFile(String stringFromFile) throws Exception {
         this.fileContent = stringFromFile;
         validateSintax(stringFromFile);
         clases = getMatches(fileContent, clasesRegx, true);
         analizeClases(clases);
+        List<String> sentences = getMatches(fileContent, clasesRegx, true);
     }
 
-    public void analizeClases(List<String> clases) {
+    public void analizeClases(List<String> clases) throws FileNotFoundException, UnsupportedEncodingException {
         for (String classContent : clases) {
             ObjectClass objectClass = new ObjectClass();
-            objectClases.add(objectClass);
             objectClass.setName(getFirstMatch(classContent, className, false).trim());
             List<String> functions = getMatches(classContent, functionRegx, false);
             analizeFunctions(functions, objectClass);
@@ -95,6 +97,7 @@ public class Analizer implements AnalizerConstants {
             objectClass.setDefinitions((ArrayList<String>) getMatches(classContent, classDefs, false));
             objectClases.add(objectClass);
         }
+        this.build();
     }
 
     public void analizeFunctions(List<String> functions, ObjectClass objectClass) {
@@ -104,7 +107,7 @@ public class Analizer implements AnalizerConstants {
             objectClass.addfunction(funtionObj);
         }
     }
-    public void build(){
+    public void build() throws FileNotFoundException, UnsupportedEncodingException{
         for(ObjectClass object: objectClases)
             object.build();
     }
