@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package generated;
+
 
 /**
  *
@@ -18,6 +18,8 @@ public class Generated {
 		
 uno instance = new uno();
 instance.PiramideTriangular();
+instance.PiramideCuadrangular();
+instance.Piramidehexagonal();
 	}
 	
 }
