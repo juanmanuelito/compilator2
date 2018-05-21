@@ -3,17 +3,17 @@ class uno
 		puts("Ingrese el area de la base de la priramide triangular ")
 		int areaBase = gets()
 		puts("ingrese la altura del triangulo")
-		int alatura = gets()
-		puts(((1/3)*areaBase*altura))
+		int altura = gets()
+		puts((((float)1/3)*areaBase*altura))
 	end
 	function PiramideCuadrangular()
 		puts("Ingrese el area de la base de la priramide cuadrangular ")
 		int areaBase = gets()
 		puts("ingrese la altura del triangulo")
-		int alatura = gets()
-		puts(((1/3)*areaBase*altura))
+		int altura = gets()
+		puts((((float)1/3)*areaBase*altura))
 	end
-	function PiramideCuadrangular()
+	function Piramidehexagonal()
 		puts("Ingrese el area de la base del triangulo ")
 		int areaBase = gets()
 		puts("ingrese el area de las caras laterales")
@@ -23,3 +23,5 @@ class uno
 end
 instance = new uno()
 instance.PiramideTriangular()
+instance.PiramideCuadrangular()
+instance.Piramidehexagonal()

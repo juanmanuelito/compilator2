@@ -23,7 +23,7 @@ public interface CodeConstants {
 	);
 	final List<String> target = Arrays.asList(
 		"(if\\s*\\(.*?\\))(?:\\s*\\n*.*?\\s*)(end)",
-		"(((private|public|)\\s*)(int|string|bool|float)(.*)\\s*=\\s*(.*))|puts\\((.*)\\)|\\w+\\s+=\\s+new\\s+\\w+\\(.*\\)|\\w+\\.\\w+\\(.*\\)|\\w+\\(.*\\)",
+		"(((private|public|)\\s*)(int|string|bool|float)(.*)\\s*=\\s*(.*))|puts\\((.*)\\)|\\w+\\s+=\\s+new\\s+\\w+\\(.*\\)|\\w+\\.\\w+\\(.*\\)",
         "(function\\s*\\w+\\s*\\(.*?\\)).*",
 		"string","bool","function","end","puts","(int\\s+\\w+\\s*\\=\\s*)(gets\\(\\))",
 		"(string\\s+\\w+\\s*\\=\\s*|String\\s+\\w+\\s*\\=\\s*)(gets\\(\\))",
