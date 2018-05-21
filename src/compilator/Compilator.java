@@ -18,7 +18,11 @@ public class Compilator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Reader a = new Reader("program.txt", new Analizer());
-        a.readFile();
+		if(args.length > 0){
+			Reader a = new Reader(args[0], new Analizer());
+			a.readFile();
+		}else{
+			throw new Error("No file name ");
+		}
     }
 }
