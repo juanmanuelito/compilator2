@@ -1,15 +1,12 @@
 class uno
 	int a,b,c
 	string a = ''
-	function uno()
+	function uno()and
+		string s = "hola"
 		int r = 18
-		
-	end
-	function dos()
-		asdfasdf
-	end
-	asdfasdf
-	function tres()
-		asdfasdf
+		puts(18)
+		int m = s+r
+		puts(m)
+		hola()
 	end
 end

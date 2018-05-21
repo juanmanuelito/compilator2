@@ -9,26 +9,21 @@ package com.compilator.objects;
  *
  * @author jmendieta
  */
-public class ObjectFunction implements Object {
+public class ObjectFunction  {
+    private String name = new String("");
+    private String content = new String("");
 
-    @Override
-    public Object setName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    @Override
+    
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.name;
     }
 
-    @Override
+    
     public void build() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
-
-    @Override
-    public boolean end() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-	
 }

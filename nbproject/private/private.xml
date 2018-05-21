@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/Users/manuelito/Documents/Ucentral/compiladores/compilator2/src/com/compilator/generator/CodeGenerator.java</file>
+            <file>file:/Users/manuelito/Documents/Ucentral/compiladores/compilator2/src/com/compilator/objects/ObjectClass.java</file>
+            <file>file:/Users/manuelito/Documents/Ucentral/compiladores/compilator2/src/com/compilator/objects/Object.java</file>
+            <file>file:/Users/manuelito/Documents/Ucentral/compiladores/compilator2/src/com/compilator/analizer/Analizer.java</file>
+            <file>file:/Users/manuelito/Documents/Ucentral/compiladores/compilator2/src/compilator/Compilator.java</file>
+            <file>file:/Users/manuelito/Documents/Ucentral/compiladores/compilator2/src/com/compilator/analizer/AnalizerConstants.java</file>
+            <file>file:/Users/manuelito/Documents/Ucentral/compiladores/compilator2/src/com/compilator/objects/ObjectFunction.java</file>
+            <file>file:/Users/manuelito/Documents/Ucentral/compiladores/compilator2/src/com/compilator/generator/CodeConstants.java</file>
+            <file>file:/Users/manuelito/Documents/Ucentral/compiladores/compilator2/src/com/compilator/reader/Reader.java</file>
+        </group>
+    </open-files>
+</project-private>

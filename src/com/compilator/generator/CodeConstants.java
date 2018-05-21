@@ -16,17 +16,19 @@ import org.omg.IOP.CodecOperations;
 public interface CodeConstants {
 	final List<List<String>> type = Arrays.asList(
 		Arrays.asList("add","replace"),
-		Arrays.asList("add"),Arrays.asList("replace"),Arrays.asList("replace")
+		Arrays.asList("add"),Arrays.asList("add"),Arrays.asList("replace"),
+                Arrays.asList("replace")
+                ,Arrays.asList("replace"),Arrays.asList("replace"),Arrays.asList("replace")
 	);
 	final List<String> target = Arrays.asList(
 		"(if\\s*\\(.*?\\))(?:\\s*\\n*.*?\\s*)(end)",
-		"((private|public|)\\s*)(int|string|bool|float)(.*)",
-		"string","bool"	
+		"(((private|public|)\\s*)(int|string|bool|float)(.*)\\s*=\\s*(.*))|puts\\((.*?)\\)",
+                "(function\\s*\\w+\\s*\\(.*?\\)).*",
+		"string","bool","function","end","puts"
 	);
 	final List<List<String>> remplacement = Arrays.asList(
-		Arrays.asList("{","}"),
-		Arrays.asList(";"),
-		Arrays.asList("String"),
-		Arrays.asList("boolean")
+            Arrays.asList("{","}"),Arrays.asList(";"),Arrays.asList("{"),Arrays.asList("String"),
+            Arrays.asList("boolean"),Arrays.asList("public void"),Arrays.asList("}")
+           ,Arrays.asList("System.out.println")
 	);
 }

@@ -31,7 +31,6 @@ public class Reader {
 			Path path = Paths.get(this.fileName);
     		String stringFromFile = new String(
             java.nio.file.Files.readAllBytes(path));
-			System.out.println(stringFromFile);
 			this.analizer.analizeFile(stringFromFile);
         } catch (Exception e) {
 			e.printStackTrace();
